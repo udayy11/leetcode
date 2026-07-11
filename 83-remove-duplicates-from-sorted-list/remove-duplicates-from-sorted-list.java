@@ -11,18 +11,26 @@
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         ListNode current = head;
-        Set<Integer> set = new TreeSet<>();
-        while(current != null){
-            set.add(current.val);
-            current = current.next;
+        while(current != null && current.next != null){
+            if(current.val == current.next.val){
+                current.next = current.next.next;
+            }else{
+                current = current.next;
+            }
         }
-        current = head;
-        ListNode result = new ListNode(0);
-        ListNode curr = result;
-        for(int num : set){
-            curr.next = new ListNode(num);
-            curr = curr.next;
-        }
-        return result.next;
+        return head;
+        // Set<Integer> set = new TreeSet<>();
+        // while(current != null){
+        //     set.add(current.val);
+        //     current = current.next;
+        // }
+        // current = head;
+        // ListNode result = new ListNode(0);
+        // ListNode curr = result;
+        // for(int num : set){
+        //     curr.next = new ListNode(num);
+        //     curr = curr.next;
+        // }
+        // return result.next;
     }
 }
